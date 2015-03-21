@@ -30,6 +30,7 @@ public class Maze : MonoBehaviour {
 	private List<int> lastCells;
 	private int backingUp = 0;
 	private int wallToBreak = 0;
+	private GameObject holeHolder;
 
 	// Use this for initialization
 	void Start () {
@@ -240,26 +241,21 @@ public class Maze : MonoBehaviour {
 	}
 
 	void RandomHole(int number) {
+		holeHolder = new GameObject ();
+		holeHolder.name = "Hole";
 		List<int> used = new List<int> ();
 		while (number > 0) {
 			int numSize = Random.Range(0,xSize*ySize);
 			if (!used.Contains(numSize)) {
 				Cell c = cells[numSize];
-//				float xsize = abs(c.east.transform.position.x - c.west.transform.position.x)/2 + c.west.transform.position.x;
-//				float ysize = abs(c.north.transform.position.y - c.south.transform.position.y)/2 + c.south.transform.position.y;
 				float x = wallLength/2f + c.west.transform.position.x;
 				float z = wallLength/2f + c.south.transform.position.z;
-				GameObject tempGO = Instantiate(holes, new Vector3(x, 0f, z), Quaternion.identity) as GameObject;
-				tempGO.transform.localScale = new Vector3(wallLength, 0f, wallLength);
-				--number;
+				if (x > -xSize/2 && x < xSize/2 && z > -ySize/2-wallLength/2 && z < ySize/2-wallLength/2) {
+					GameObject tempGO = Instantiate(holes, new Vector3(x, 0f, z), Quaternion.identity) as GameObject;
+					tempGO.transform.localScale = new Vector3(wallLength, 0f, wallLength);
+					tempGO.transform.parent = holeHolder.transform; --number;
+				}
 			}
-//			Vector3 tmp = new Vector3 (Random.Range ((float)-x / 2f, (float)x / 2f), 0f, Random.Range ((float)-y / 2f, (float)y / 2f));
-//			if (!Physics.CheckSphere(tmp,0.15f)) {
-//				Debug.Log (tmp);
-//				GameObject tempGO = Instantiate(holes, tmp, Quaternion.identity) as GameObject;
-//				tempGO.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-//				--number;
-//			}
 		}
 	}
 }
