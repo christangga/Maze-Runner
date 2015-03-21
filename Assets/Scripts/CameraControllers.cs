@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraControllers : MonoBehaviour {
+
 	public GameObject character;
 	private Vector3 offset;
 	// Use this for initialization
