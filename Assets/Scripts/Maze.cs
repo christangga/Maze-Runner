@@ -252,7 +252,7 @@ public class Maze : MonoBehaviour {
 				float z = wallLength/2f + c.south.transform.position.z;
 				if (x > -xSize/2 && x < xSize/2 && z > -ySize/2-wallLength/2 && z < ySize/2-wallLength/2) {
 					GameObject tempGO = Instantiate(holes, new Vector3(x, 0f, z), Quaternion.identity) as GameObject;
-					tempGO.transform.localScale = new Vector3(wallLength, 0f, wallLength);
+					tempGO.transform.localScale = new Vector3(wallLength, 1f, wallLength);
 					tempGO.transform.parent = holeHolder.transform; --number;
 				}
 			}
