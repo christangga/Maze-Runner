@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Maze : MonoBehaviour {
+public class balltest : MonoBehaviour {
 	[System.Serializable]
 	public class Cell{
 		public bool visited;
@@ -35,8 +35,8 @@ public class Maze : MonoBehaviour {
 		CreateFloors ();
 		CreateWalls ();
 	}
-	
-	
+
+
 	void CreateFloors() {
 		GameObject tempfloor;
 		initialPos = new Vector3 (0.0f, 0.0f, 0.0f);
@@ -164,7 +164,7 @@ public class Maze : MonoBehaviour {
 		case 4 : Destroy(cells[currentCell].south); break;
 		}
 	}
-	
+
 	void PutCharacter() {
 		GameObject temp;
 		Vector3 myPos = initialPos;
